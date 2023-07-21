@@ -51,17 +51,11 @@ int main(int argc, char* argv[])
 
     // 开始监听
     clnt_addr_size = sizeof(clnt_addr);
-    while (1) {
-        clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
-        if (clnt_sock == -1){
-            error_handle("accept error");
-            continue;
-        }
-        int fc = fork();
-        if (fc == 0) {
-            write(clnt_sock, message,  sizeof(message));
-        }
+    clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
+    if (clnt_sock == -1){
+        error_handle("accept error");
     }
+    write(clnt_sock, message,  sizeof(message));
 
     return 0;
 }

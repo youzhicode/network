@@ -44,6 +44,8 @@ int main(int argc, char* argv[])
         error_handle("bind() error");
     }
 
+
+
     // 设置监听队列的长度
     if (listen(serv_sock, 5) == -1) {
         error_handle("listen() error");
